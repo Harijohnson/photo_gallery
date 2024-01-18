@@ -150,3 +150,14 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 
+
+
+
+
+
+# DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+# AWS_STORAGE_BUCKET_NAME = '<YOUR_BUCKET_NAME>'
+# AWS_S3_ENDPOINT_URL = 'https://<YOUR_ACCOUNT_ID>.r2.cloudflarestorage.com'
+# AWS_S3_ACCESS_KEY_ID = '<YOUR_ACCESS_KEY>'
+# AWS_S3_SECRET_ACCESS_KEY = '<YOUR_SECRET_KEY>'
+# AWS_S3_SIGNATURE_VERSION = 's3v4'
