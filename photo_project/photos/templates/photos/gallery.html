@@ -8,6 +8,7 @@
     <style>
         .image-thubnail{
             height:200px;
+            object-fit: fill;
         }
     </style>
 </head>
@@ -19,38 +20,44 @@
             <div class = 'col-md-3'>
                 <div class="card">
                     <div class="card-header">
-                        Categories
+                        Categoryes
                     </div>
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item">
-                                All
+                                <a href="{% url 'gallery' %}">All</a>
                             </li>
-                            <li class="list-group-item">
-                                sep
-                            </li>
-                            <li class="list-group-item">
-                                mul
-                            </li>
-                            <li class="list-group-item">
-                                div
-                            </li>
+
+                            {% for category in categoryes %}
+                                <li class="list-group-item">
+                                    <a href="{% url 'gallery' %}?category={{category.name}}">{{ category }}</a>
+                                </li>
+                            {% endfor %}
+                        
+                            
+                                <a href="{% url 'add-photo' %}" class="btn btn-dark btn-sm m-1 btn-block">Add Photo</a>
+                            
                         </ul>
 
                 </div> 
             </div>
             <div class = 'col-md-9'>
                 <div class="row">
+                    {% for photo in photos %}
                     <div class="col-md-4">
                         <div class="card my-2" >
                             <img class="image-thubnail" 
-                            src="https://images.hindustantimes.com/img/2023/01/17/1600x900/mugi-jo-6qUltw7SjzM-unsplash_1669276738103_1673939172423_1673939172423.jpg" class="card-img-top" alt="ooty">
+                            src="{{photo.image.url}}" class="card-img-top" alt="{{photo.name}}">
                             <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <a href="#" class="btn btn-outline-dark btn-sm m-1">View</a>
+                            <h5 class="card-title">Category : {{photo.category.name}}</h5>
+                            <p class="card-text">Aout :{{photo.description}}</p>
+                            
                             </div>
+                            <a href="{% url 'view-photo' photo.id %}" class="btn btn-dark btn-block btn-sm m-1">View</a>
                         </div>
                     </div>
+                    {% empty %}
+                    <h3> No Photos</h3>
+                    {% endfor %}
                 </div>
             </div>
         </div>
